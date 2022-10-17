@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      #- npm install
+      #- gem install cyclonedx-ruby
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      #- curl -sSL https://raw.githubusercontent.com/threatrix/distribution/master/threatagent-hostenv.sh | sh
+      #- docker run --env-file=host.env --name threatrix-threat-agent -v $(pwd):/app threatrix/threat-agent ./
+      #- curl -L https://github.com/threatrix/threat-matrix/releases/download/v1.2.9-RELEASE/threat-agent-1.2.9.6.jar -o threat-agent.jar
+      - curl -sSL https://raw.githubusercontent.com/threatrix/distribution/master/threatagent-standalone.sh | sh
+      - java -jar threat-agent.jar ./
